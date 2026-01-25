@@ -1,6 +1,6 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
-# Create your models here.
 
 class Internship(models.Model):
     title = models.CharField(max_length=200)
@@ -13,8 +13,8 @@ class Internship(models.Model):
         help_text="Use HTML <li> tags for bullet points"
     )
 
-    image = models.ImageField(
-        upload_to='experience/internships/',
+    image = CloudinaryField(
+        'internship_image',
         blank=True,
         null=True
     )
@@ -29,6 +29,7 @@ class Internship(models.Model):
     def __str__(self):
         return f"{self.title} - {self.company}"
 
+
 class Experience(models.Model):
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
@@ -37,11 +38,11 @@ class Experience(models.Model):
     end_date = models.CharField(max_length=50)
 
     description = models.TextField(
-        help_text="Use HTML list tags - li for bullet points"
+        help_text="Use HTML <li> tags for bullet points"
     )
 
-    image = models.ImageField(
-        upload_to='experience/jobs/',
+    image = CloudinaryField(
+        'experience_image',
         blank=True,
         null=True
     )
