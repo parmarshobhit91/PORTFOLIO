@@ -8,9 +8,8 @@ def home_view(request):
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-def about_view(request):
 
-    def create_admin(request):
+def create_admin(request):
         if not User.objects.filter(username="admin").exists():
             User.objects.create_superuser(
                 username="admin",
@@ -18,8 +17,9 @@ def about_view(request):
                 password="admin123"
             )
         return HttpResponse("Admin created")
-    create_admin()
 
+
+def about_view(request):
     return render(request, 'core/about.html')
 
 def contact_view(request):
