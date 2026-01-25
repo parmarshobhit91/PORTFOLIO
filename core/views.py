@@ -1,11 +1,25 @@
 from django.shortcuts import render
 from .utils import *
 
+
 # Create your views here.
 def home_view(request):
     return render(request, 'core/home.html')
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 def about_view(request):
+
+    def create_admin(request):
+        if not User.objects.filter(username="admin").exists():
+            User.objects.create_superuser(
+                username="admin",
+                email="youremail@gmail.com",
+                password="admin123"
+            )
+        return HttpResponse("Admin created")
+    create_admin()
+
     return render(request, 'core/about.html')
 
 def contact_view(request):
