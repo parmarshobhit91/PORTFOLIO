@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block start %}
+
+<style>
+/* ===== ABOUT PAGE ===== */
+.about-section {
+    min-height: 90vh;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    background: #f8f9fa;
+}
+
+.about-title {
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+/* Card */
+.about-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    margin-bottom: 3rem;
+}
+
+/* Tech stack icons */
+.tech-stack {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tech-stack img {
+    height: 55px;
+    transition: transform 0.2s ease;
+}
+
+.tech-stack img:hover {
+    transform: scale(1.1);
+}
+
+/* Resume button */
+.resume-btn {
+    padding: 0.7rem 2.5rem;
+    font-weight: 600;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .tech-stack {
+        justify-content: center;
+    }
+}
+</style>
+
+{% include 'navbar-dark.html' %}
+
+<section class="about-section">
+  <div class="container">
+
+    <!-- Page Title -->
+    <h1 class="text-center about-title">About Me</h1>
+
+    <!-- Who I Am -->
+    <div class="about-card">
+      <h4 class="fw-semibold mb-3">Who I Am</h4>
+      <p class="mb-0">
+        I am a Software Engineer specializing in backend development using Django.
+        I enjoy building scalable, secure, and efficient web applications.
+        Passionate about clean code and system design.
+      </p>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="about-card">
+      <h4 class="fw-semibold mb-4">My Tech Stack</h4>
+
+      <div class="tech-stack">
+        <img src="{% static 'core/python.jpeg' %}" alt="Python">
+        <img src="{% static 'core/django-logo.webp' %}" alt="Django">
+        <img src="{% static 'core/htmlcssjs.png' %}" alt="JavaScript">
+        <img src="{% static 'core/github.jpg' %}" alt="GitHub">
+        <img src="{% static 'core/git.png' %}" alt="Git">
+        <img src="{% static 'core/numpy.png' %}" alt="Numpy">
+        <img src="{% static 'core/pandas.png' %}" alt="Pandas">
+      </div>
+    </div>
+
+    <!-- Resume -->
+    <div class="text-center">
+      <a href="{% static 'core/resume.pdf' %}"
+         class="btn btn-primary resume-btn"
+         target="_blank">
+        Download Resume
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

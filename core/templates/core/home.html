@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block start %}
+
+<style>
+/* ===== HERO SECTION ===== */
+.hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Optional dark overlay for background */
+.hero-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 0;
+}
+
+/* Ensure content stays above overlay */
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Highlight text */
+.highlight {
+    color: #00e5ff;
+}
+
+/* Right image styling */
+.hero-image {
+    max-height: 90vh;
+    width: auto;
+    display: block;
+    margin-bottom: 0;
+}
+
+/* Typography tweaks */
+.hero-subtitle {
+    opacity: 0.9;
+}
+
+/* Mobile adjustments */
+@media (max-width: 991px) {
+    .hero-wrapper {
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+    }
+
+    .hero-image {
+        max-height: 320px;
+    }
+}
+</style>
+
+{% include 'navbar.html' %}
+
+<section class="hero-wrapper">
+  <div class="container hero-content">
+    <div class="row align-items-center min-vh-100">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+
+        <h1 class="fw-bold display-4 mb-3">
+          Hi, I’m <span class="highlight">Shobhit Parmar</span>
+        </h1>
+
+        <h2 class="fw-semibold fs-4 hero-subtitle mb-3">
+          Software Engineer | Backend Developer
+        </h2>
+
+        <p class="lead mb-4">
+          Building innovative & scalable backend solutions using Django.
+        </p>
+
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+          <a href="{% url 'contact_view' %}" class="btn btn-primary btn-lg px-4">
+            Contact Me
+          </a>
+          <a href="{% url 'about_view' %}" class="btn btn-outline-light btn-lg px-4">
+            About Me
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-end p-0 mt-5 mt-lg-0">
+        <img
+          src="{% static 'core/profile1.png' %}"
+          alt="Shobhit Parmar"
+          class="img-fluid hero-image"
+          loading="lazy"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

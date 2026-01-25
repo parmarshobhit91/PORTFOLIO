@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block start %}
+
+<style>
+/* ===== EXPERIENCE PAGE ===== */
+.experience-section {
+    min-height: 100vh;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    background: #f8f9fa;
+}
+
+.section-title {
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Card */
+.exp-card {
+    padding: 1.8rem;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+}
+
+/* Image */
+.exp-image {
+    width: 100%;
+    max-width: 220px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Date */
+.exp-date {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+/* Description bullets */
+.exp-desc li {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .exp-image {
+        max-width: 100%;
+        height: auto;
+        margin-top: 1rem;
+    }
+}
+</style>
+
+{% include 'navbar-dark.html' %}
+
+<section class="experience-section">
+  <div class="container">
+
+    <!-- ===== INTERNSHIPS / TRAININGS ===== -->
+    <h2 class="section-title">Internships & Trainings</h2>
+
+    {% for item in internships %}
+    <div class="exp-card">
+      <div class="row align-items-center gy-3">
+
+        <div class="col-md-8">
+          <h5 class="fw-semibold mb-1">{{ item.title }}</h5>
+          <p class="mb-1 text-muted">{{ item.company }}</p>
+          <p class="exp-date mb-2">
+            {{ item.start_date }} – {{ item.end_date }}
+          </p>
+
+          <ul class="exp-desc ps-3">
+            {{ item.description|safe }}
+          </ul>
+        </div>
+
+        <div class="col-md-4 text-md-end text-center">
+          <img src="{{ item.image.url }}"
+               alt="{{ item.title }}"
+               class="exp-image">
+        </div>
+
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-muted">No internships added yet.</p>
+    {% endfor %}
+
+    <!-- ===== EXPERIENCE ===== -->
+    <h2 class="section-title mt-5">Experience</h2>
+
+    {% for item in experiences %}
+    <div class="exp-card">
+      <div class="row align-items-center gy-3">
+
+        <div class="col-md-8">
+          <h5 class="fw-semibold mb-1">{{ item.title }}</h5>
+          <p class="mb-1 text-muted">{{ item.company }}</p>
+          <p class="exp-date mb-2">
+            {{ item.start_date }} – {{ item.end_date }}
+          </p>
+
+          <ul class="exp-desc ps-3">
+            {{ item.description|safe }}
+          </ul>
+        </div>
+
+        <div class="col-md-4 text-md-end text-center">
+          <img src="{{ item.image.url }}"
+               alt="{{ item.title }}"
+               class="exp-image">
+        </div>
+
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-muted">No experience added yet.</p>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% endblock %}
