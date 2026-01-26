@@ -67,11 +67,11 @@
         <!-- LEFT CONTENT -->
         <div class="col-12 col-md-7">
           <div class="d-flex gap-3 align-items-start">
-
+            {% if project.image %}
             <img src="{{ project.image.url }}"
                  alt="{{ project.title }}"
                  class="project-thumb">
-
+            {% endif %}
             <div>
               <h5 class="fw-semibold mb-1">{{ project.title }}</h5>
               <p class="mb-3 text-muted">
@@ -105,9 +105,11 @@
 
         <!-- RIGHT IMAGE -->
         <div class="col-12 col-md-5 text-md-end text-center">
+          {% if project.image %}
           <img src="{{ project.image.url }}"
                alt="{{ project.title }}"
                class="project-preview">
+          {% endif %}
         </div>
 
       </div>

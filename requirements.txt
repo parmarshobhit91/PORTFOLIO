@@ -1,5 +1,5 @@
 # Core
-Django>=4.2,<5.1
+Django==5.0.4
 gunicorn
 whitenoise
 
