@@ -1,16 +1,37 @@
-from django.core.mail import send_mail
+import resend
 from django.conf import settings
 
+resend.api_key = settings.RESEND_API_KEY
+
+FROM_EMAIL = "Portfolio <onboarding@resend.dev>"  # free tier sender
+
+
 def send_email_to_me(name, email, contact_number, message_text):
-    subject = "New Interest Received"
-    message = f"Name : {name}, Email: {email},Contact Number: {contact_number}, Message: {message_text}"
-    from_email = settings.EMAIL_HOST_USER
-    recipient_list = [f'{settings.EMAIL_HOST_USER}']
-    send_mail(subject, message, from_email, recipient_list)
+    resend.Emails.send({
+        "from": FROM_EMAIL,
+        "to": ["parmarshobhit91@gmail.com"],  # YOUR email
+        "subject": "New Interest Received",
+        "html": f"""
+            <h3>New Contact Submission</h3>
+            <p><strong>Name:</strong> {name}</p>
+            <p><strong>Email:</strong> {email}</p>
+            <p><strong>Contact Number:</strong> {contact_number}</p>
+            <p><strong>Message:</strong><br>{message_text}</p>
+        """
+    })
+
 
 def send_email_to_contacted_person(email):
-    subject = "Thank you for showing interest"
-    message = f"Here is Shobhit Parmar, Software Engineer. Thank you for contacting me. I'll reach out to you shortly."
-    from_email = settings.EMAIL_HOST_USER
-    recipient_list = [f'{email}']
-    send_mail(subject, message, from_email, recipient_list)
+    resend.Emails.send({
+        "from": FROM_EMAIL,
+        "to": [email],
+        "subject": "Thank you for showing interest",
+        "html": """
+            <p>Hi,</p>
+            <p>
+                This is <strong>Shobhit Parmar</strong>, Software Engineer.<br>
+                Thank you for contacting me. I’ll reach out to you shortly.
+            </p>
+            <p>Best regards,<br>Shobhit Parmar</p>
+        """
+    })
