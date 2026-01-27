@@ -22,7 +22,7 @@ def contact_view(request):
 
         try:
             send_email_to_me(name, email, contact_number, message)
-            send_email_to_contacted_person(email)
+            # send_email_to_contacted_person(email)
         except Exception as e:
             # Log error but DO NOT crash
             print("Email sending failed:", e)

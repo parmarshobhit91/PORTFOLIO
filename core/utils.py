@@ -20,18 +20,19 @@ def send_email_to_me(name, email, contact_number, message_text):
         """
     })
 
+# This is not working due to using free service
 
-def send_email_to_contacted_person(email):
-    resend.Emails.send({
-        "from": FROM_EMAIL,
-        "to": [email],
-        "subject": "Thank you for showing interest",
-        "html": """
-            <p>Hi,</p>
-            <p>
-                This is <strong>Shobhit Parmar</strong>, Software Engineer.<br>
-                Thank you for contacting me. I’ll reach out to you shortly.
-            </p>
-            <p>Best regards,<br>Shobhit Parmar</p>
-        """
-    })
+# def send_email_to_contacted_person(email):
+#     resend.Emails.send({
+#         "from": FROM_EMAIL,
+#         "to": [email],
+#         "subject": "Thank you for showing interest",
+#         "html": """
+#             <p>Hi,</p>
+#             <p>
+#                 This is <strong>Shobhit Parmar</strong>, Software Engineer.<br>
+#                 Thank you for contacting me. I’ll reach out to you shortly.
+#             </p>
+#             <p>Best regards,<br>Shobhit Parmar</p>
+#         """
+#     })
