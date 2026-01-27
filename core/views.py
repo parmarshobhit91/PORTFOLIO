@@ -13,25 +13,58 @@ def about_view(request):
     return render(request, 'core/about.html')
 
 
+from django.shortcuts import render
+from django.contrib import messages
+from django.conf import settings
+import resend
+import logging
+
+logger = logging.getLogger(__name__)
+
+FROM_EMAIL = "Portfolio <onboarding@resend.dev>"
+
+def send_email_to_me(name, email, contact_number, message_text):
+    if not settings.RESEND_API_KEY:
+        raise ValueError("RESEND_API_KEY missing")
+
+    resend.api_key = settings.RESEND_API_KEY
+
+    return resend.Emails.send({
+        "from": FROM_EMAIL,
+        "to": ["parmarshobhit91@gmail.com"],
+        "subject": "New Interest Received",
+        "html": f"""
+            <h3>New Contact Submission</h3>
+            <p><strong>Name:</strong> {name}</p>
+            <p><strong>Email:</strong> {email}</p>
+            <p><strong>Contact Number:</strong> {contact_number}</p>
+            <p><strong>Message:</strong><br>{message_text}</p>
+        """
+    })
+
+
 def contact_view(request):
     if request.method == "POST":
-        print("CONTACT FORM SUBMITTED")
-        # name = request.POST.get('name')
-        # email = request.POST.get('email')
-        # message = request.POST.get('message')
-        # contact_number = request.POST.get('contact_number')
+        try:
+            send_email_to_me(
+                request.POST.get("name"),
+                request.POST.get("email"),
+                request.POST.get("contact_number"),
+                request.POST.get("message"),
+            )
 
-        # try:
-        #     send_email_to_me(name, email, contact_number, message)
-        #     # send_email_to_contacted_person(email)
-        # except Exception as e:
-        #     # Log error but DO NOT crash
-        #     print("Email sending failed:", e)
+            messages.success(
+                request,
+                "Thanks for contacting me! I’ll get back to you shortly."
+            )
 
-        # messages.success(
-        #     request,
-        #     "Thank you for contacting me. I will get back to you shortly."
-        # )
-        # return redirect("contact")  # IMPORTANT
+        except Exception as e:
+            logger.exception("CONTACT FORM ERROR")
+            print("CONTACT ERROR:", e)
 
-    return render(request, 'core/contact.html')
+            messages.error(
+                request,
+                "Message failed to send. Please try again later."
+            )
+
+    return render(request, "core/contact.html")
