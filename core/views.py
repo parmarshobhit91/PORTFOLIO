@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .utils import *
+from blog.models import Internship, Experience
 
 
 # Create your views here.
@@ -10,7 +11,9 @@ def home_view(request):
 
 
 def about_view(request):
-    return render(request, 'core/about.html')
+    internships = Internship.objects.all()
+    experiences = Experience.objects.all()
+    return render(request, 'core/about.html', {"internships": internships, "experiences": experiences})
 
 
 from django.shortcuts import render

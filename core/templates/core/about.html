@@ -42,16 +42,34 @@
     transform: scale(1.1);
 }
 
-/* Resume button */
-.resume-btn {
-    padding: 0.7rem 2.5rem;
-    font-weight: 600;
+/* Experience / Internship */
+.exp-image {
+    width: 100%;
+    max-width: 200px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.exp-date {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.exp-desc li {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
     .tech-stack {
         justify-content: center;
+    }
+    .exp-image {
+        max-width: 100%;
+        height: auto;
+        margin-top: 1rem;
     }
 }
 </style>
@@ -77,7 +95,6 @@
     <!-- Tech Stack -->
     <div class="about-card">
       <h4 class="fw-semibold mb-4">My Tech Stack</h4>
-
       <div class="tech-stack">
         <img src="{% static 'core/python.jpeg' %}" alt="Python">
         <img src="{% static 'core/django-logo.webp' %}" alt="Django">
@@ -87,6 +104,58 @@
         <img src="{% static 'core/numpy.png' %}" alt="Numpy">
         <img src="{% static 'core/pandas.png' %}" alt="Pandas">
       </div>
+    </div>
+
+    <!-- Internships & Trainings -->
+    <div class="about-card">
+      <h4 class="fw-semibold mb-4">Internships & Trainings</h4>
+
+      {% for item in internships %}
+      <div class="row align-items-center gy-3 mb-4">
+        <div class="col-md-8">
+          <h6 class="fw-semibold mb-1">{{ item.title }}</h6>
+          <p class="mb-1 text-muted">{{ item.company }}</p>
+          <p class="exp-date mb-2">
+            {{ item.start_date }} – {{ item.end_date }}
+          </p>
+          <ul class="exp-desc ps-3">
+            {{ item.description|safe }}
+          </ul>
+        </div>
+
+        <div class="col-md-4 text-md-end text-center">
+          <img src="{{ item.image.url }}" class="exp-image" alt="{{ item.title }}">
+        </div>
+      </div>
+      {% empty %}
+        <p class="text-muted">No internships added yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Experience (Optional but Recommended) -->
+    <div class="about-card">
+      <h4 class="fw-semibold mb-4">Experience</h4>
+
+      {% for item in experiences %}
+      <div class="row align-items-center gy-3 mb-4">
+        <div class="col-md-8">
+          <h6 class="fw-semibold mb-1">{{ item.title }}</h6>
+          <p class="mb-1 text-muted">{{ item.company }}</p>
+          <p class="exp-date mb-2">
+            {{ item.start_date }} – {{ item.end_date }}
+          </p>
+          <ul class="exp-desc ps-3">
+            {{ item.description|safe }}
+          </ul>
+        </div>
+
+        <div class="col-md-4 text-md-end text-center">
+          <img src="{{ item.image.url }}" class="exp-image" alt="{{ item.title }}">
+        </div>
+      </div>
+      {% empty %}
+        <p class="text-muted">No experience added yet.</p>
+      {% endfor %}
     </div>
 
     <!-- Resume -->
