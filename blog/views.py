@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 def blog_view(request):
     blogs = Blog.objects.filter(is_published=True)
-    return render(request, 'blog/blog.html', {"blogs": blogs, "debug": True})
+    return render(request, 'blog/blog.html', {"blogs": blogs})
 
 
 def blog_detail(request, slug):
