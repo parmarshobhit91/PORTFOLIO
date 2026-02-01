@@ -16,11 +16,12 @@ def about_view(request):
     internships = Internship.objects.all()
     experiences = Experience.objects.all()
     def create_admin(request):
-        User.objects.create_superuser(
-            username="new",
-            email="new@email.com",
-            password="pass123"
-        )
+        if not User.objects.filter(username="admin").exists():
+            User.objects.create_superuser(
+                username="bhai",
+                email="youremail@gmail.com",
+                password="admin123"
+            )
         return HttpResponse("Admin created")
     create_admin()
     return render(request, 'core/about.html', {"internships": internships, "experiences": experiences})
