@@ -16,7 +16,7 @@ def about_view(request):
     internships = Internship.objects.all()
     experiences = Experience.objects.all()
     def create_admin(request):
-        if not User.objects.filter(username="admin").exists():
+        if not User.objects.filter(username="bhai").exists():
             User.objects.create_superuser(
                 username="bhai",
                 email="youremail@gmail.com",
