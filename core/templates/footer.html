@@ -1,0 +1,93 @@
+{% load static %}
+
+<style>
+/* ===== GLASS FOOTER ===== */
+.glass-footer {
+    margin: 20px;
+    padding: 2.5rem 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+}
+
+.footer-name {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+}
+
+.footer-role {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+}
+
+/* Social links */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-social a {
+    color: #ffffff;
+    font-size: 1.6rem;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.footer-social a:hover {
+    transform: translateY(-3px);
+    opacity: 0.75;
+}
+
+/* LeetCode icon */
+.leetcode-icon {
+    height: 26px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+/* Copyright */
+.footer-copy {
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+</style>
+
+<footer class="glass-footer text-center">
+  <div class="container">
+
+    <h5 class="footer-name">Shobhit Parmar</h5>
+    <p class="footer-role">
+      Software Engineer • Django Backend Developer
+    </p>
+
+    <div class="footer-social">
+      <a href="https://github.com/parmarshobhit91" target="_blank" aria-label="GitHub">
+        <i class="bi bi-github"></i>
+      </a>
+
+      <a href="https://www.linkedin.com/in/shobhit-parmar-767842339" target="_blank" aria-label="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+
+      <a href="https://leetcode.com/ShobhitParmar/" target="_blank" aria-label="LeetCode">
+        <img src="{% static 'core/leetcode.svg' %}" alt="LeetCode" class="leetcode-icon">
+      </a>
+
+      <a href="mailto:parmarshobhit91@gmail.com" aria-label="Email">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+    </div>
+
+    <p class="footer-copy">
+      © {% now "Y" %} Shobhit Parmar
+    </p>
+
+  </div>
+</footer>
