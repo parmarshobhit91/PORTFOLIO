@@ -15,7 +15,7 @@ def home_view(request):
 def about_view(request):
     internships = Internship.objects.all()
     experiences = Experience.objects.all()
-    def create_admin(request):
+    def create_admin():
         if not User.objects.filter(username="bhai").exists():
             User.objects.create_superuser(
                 username="bhai",
