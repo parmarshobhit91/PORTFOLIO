@@ -2,10 +2,20 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .utils import *
 from blog.models import Internship, Experience
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 
 # Create your views here.
 def home_view(request):
+    def create_admin(request):
+        User.objects.create_superuser(
+            username="new",
+            email="new@email.com",
+            password="pass123"
+        )
+        return HttpResponse("Admin created")
+    create_admin()
     return render(request, 'core/home.html')
 
 
