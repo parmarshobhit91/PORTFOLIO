@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .utils import *
 from blog.models import Internship, Experience
-from django.contrib.auth.models import User
-from django.http import HttpResponse
+# from django.contrib.auth.models import User
+# from django.http import HttpResponse
 
 
 # Create your views here.
@@ -15,15 +15,15 @@ def home_view(request):
 def about_view(request):
     internships = Internship.objects.all()
     experiences = Experience.objects.all()
-    def create_admin():
-        if not User.objects.filter(username="bhai").exists():
-            User.objects.create_superuser(
-                username="bhai",
-                email="youremail@gmail.com",
-                password="admin123"
-            )
-        return HttpResponse("Admin created")
-    create_admin()
+    # def create_admin():
+    #     if not User.objects.filter(username="bhai").exists():
+    #         User.objects.create_superuser(
+    #             username="bhai",
+    #             email="youremail@gmail.com",
+    #             password="admin123"
+    #         )
+    #     return HttpResponse("Admin created")
+    # create_admin()
     return render(request, 'core/about.html', {"internships": internships, "experiences": experiences})
 
 
