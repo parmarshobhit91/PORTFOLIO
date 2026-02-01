@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Internship)
 admin.site.register(Experience)
+admin.site.register(Blog)
