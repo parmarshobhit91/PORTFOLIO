@@ -8,6 +8,13 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home_view(request):
+    return render(request, 'core/home.html')
+
+
+
+def about_view(request):
+    internships = Internship.objects.all()
+    experiences = Experience.objects.all()
     def create_admin(request):
         User.objects.create_superuser(
             username="new",
@@ -16,13 +23,6 @@ def home_view(request):
         )
         return HttpResponse("Admin created")
     create_admin()
-    return render(request, 'core/home.html')
-
-
-
-def about_view(request):
-    internships = Internship.objects.all()
-    experiences = Experience.objects.all()
     return render(request, 'core/about.html', {"internships": internships, "experiences": experiences})
 
 
