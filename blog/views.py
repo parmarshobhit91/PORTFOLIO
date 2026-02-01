@@ -12,4 +12,4 @@ def blog_detail(request, slug):
         slug=slug,
         is_published=True
     )
-    return render(request, 'blog/blog_detail.html', {'blog': blog})
+    return render(request, 'blog/blog-detail.html', {'blog': blog})
