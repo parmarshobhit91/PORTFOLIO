@@ -4,7 +4,8 @@ from .models import *
 # Create your views here.
 def blog_view(request):
     blogs = Blog.objects.filter(is_published=True)
-    return render(request, 'blog/blog.html', {"blogs": blogs})
+    return render(request, 'blog/blog.html', {"blogs": blogs, "debug": True})
+
 
 def blog_detail(request, slug):
     blog = get_object_or_404(
