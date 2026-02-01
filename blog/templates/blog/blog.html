@@ -86,9 +86,14 @@
               {{ blog.short_description }}
             </p>
 
-            <a href="{% url 'blog_detail' blog.slug %}" class="read-more">
-              Read More →
-            </a>
+            {% if blog.slug %}
+  <a href="{% url 'blog_detail' blog.slug %}" class="read-more">
+    Read More →
+  </a>
+{% else %}
+  <span class="text-muted">Slug missing</span>
+{% endif %}
+
           </div>
 
         </div>
